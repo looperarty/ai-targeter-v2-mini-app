@@ -3,6 +3,54 @@ const telegramWebApp = window.Telegram.WebApp;
 telegramWebApp.ready();
 telegramWebApp.expand();
 
+// --- Логика для кнопок хедера ---
+
+document.getElementById('backButton').addEventListener('click', () => {
+    telegramWebApp.close(); // Закрываем Mini App
+});
+
+document.getElementById('dateSelectButton').addEventListener('click', () => {
+    // В будущем здесь будет логика для выпадающего календаря
+    telegramWebApp.showAlert(`Кнопка "Выбор даты" нажата. Сегодня: ${new Date().toLocaleDateString()}`);
+});
+
+document.getElementById('refreshButton').addEventListener('click', () => {
+    // Здесь можно добавить логику для обновления данных
+    telegramWebApp.showAlert('Данные обновлены (функция в разработке).');
+    // В реальном приложении здесь будет запрос к боту за новыми данными
+});
+
+document.getElementById('themeToggleButton').addEventListener('click', () => {
+    // Логика для переключения темы (темная/светлая)
+    // Telegram Web Apps автоматически предоставляет информацию о теме.
+    // Можно получить ее через telegramWebApp.themeParams и менять стили динамически.
+    const isDark = telegramWebApp.colorScheme === 'dark';
+    const newTheme = isDark ? 'светлая' : 'темная';
+    telegramWebApp.showAlert(`Тема будет переключена на ${newTheme}. (Функционал в разработке. Сейчас тема определяется настройками Telegram.)`);
+
+    // Для демонстрации, можно переключать класс на body, если нет прямого контроля над темами Telegram
+    // document.body.classList.toggle('light-theme', isDark); 
+    // document.body.classList.toggle('dark-theme', !isDark);
+});
+
+
+// --- Логика для кнопок статистики (показ описания) ---
+document.querySelectorAll('.stat-card').forEach(button => {
+    const description = button.querySelector('.metric-description');
+    if (description) {
+        button.addEventListener('click', () => {
+            // Переключаем видимость описания
+            description.classList.toggle('visible');
+            // Можно добавить задержку, чтобы описание само исчезало
+            // setTimeout(() => {
+            //     description.classList.remove('visible');
+            // }, 3000);
+        });
+    }
+});
+
+
+// --- Логика для отправки данных формы (оставлена для тестов) ---
 document.getElementById('analyzeButton').addEventListener('click', () => {
     const productName = document.getElementById('productName').value.trim();
     const campaignGoal = document.getElementById('campaignGoal').value;
@@ -15,7 +63,7 @@ document.getElementById('analyzeButton').addEventListener('click', () => {
     }
 
     const data = {
-        type: 'campaign_analysis', // Тип запроса для бэкенда
+        type: 'campaign_analysis_manual', // Изменил тип запроса
         product_name: productName,
         campaign_goal: campaignGoal,
         target_audience_description: targetAudienceDesc,
@@ -26,5 +74,5 @@ document.getElementById('analyzeButton').addEventListener('click', () => {
     // Отправляем данные боту
     telegramWebApp.sendData(JSON.stringify(data));
 
-    telegramWebApp.close(); // Можно закрыть Mini App после отправки данных
+    telegramWebApp.close(); // Закрываем Mini App после отправки данных
 });

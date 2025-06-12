@@ -1,37 +1,289 @@
+:root {
+    /* Переменные для темной и светлой темы Telegram */
+    --tg-theme-bg-color: #212121; /* Основной фон (темный) */
+    --tg-theme-secondary-bg-color: #2c2c2c; /* Фон карточек/элементов (темный) */
+    --tg-theme-text-color: #ffffff; /* Цвет основного текста (светлый) */
+    --tg-theme-hint-color: #aaaaaa; /* Цвет подсказок/второстепенного текста */
+    --tg-theme-link-color: #85c2ff; /* Цвет ссылок */
+    --tg-theme-button-color: #5288c1; /* Цвет кнопок */
+    --tg-theme-button-text-color: #ffffff; /* Цвет текста кнопок */
+    --tg-theme-header-bg-color: #2c2c2c; /* Цвет фона шапки (темный) */
+}
+
+/* Адаптация для светлой темы Telegram (если пользователь ее использует) */
+@media (prefers-color-scheme: light) {
+    :root {
+        --tg-theme-bg-color: #ffffff;
+        --tg-theme-secondary-bg-color: #f0f0f0;
+        --tg-theme-text-color: #000000;
+        --tg-theme-hint-color: #777777;
+        --tg-theme-link-color: #007aff;
+        --tg-theme-button-color: #007aff;
+        --tg-theme-button-text-color: #ffffff;
+        --tg-theme-header-bg-color: #ffffff;
+    }
+}
+
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
     margin: 0;
-    padding: 20px;
+    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Выравнивание по верху */
     min-height: 100vh;
     box-sizing: border-box;
 }
 
 .container {
-    background-color: var(--tg-theme-secondary-bg-color);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--tg-theme-bg-color); /* Основной фон контейнера */
+    padding: 0px; /* Убрал внутренние отступы, чтобы header прилип */
+    border-radius: 0; /* Убрал скругления для полного соответствия макету */
     width: 100%;
-    max-width: 450px; /* Увеличил ширину */
+    max-width: 600px; /* Ограничиваем ширину для больших экранов */
+    box-shadow: none; /* Убираем тень, т.к. фон одинаковый */
     text-align: center;
 }
 
-h1 {
+/* --- Header (Верхняя панель) --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--tg-theme-header-bg-color); /* Фон шапки */
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Разделитель */
     color: var(--tg-theme-text-color);
-    margin-bottom: 15px;
-    font-size: 1.8em;
 }
 
-p {
+.header h1 {
+    flex-grow: 1; /* Чтобы заголовок занимал все доступное место */
+    font-size: 1.2em;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.header h1 small {
+    display: block;
+    font-size: 0.7em;
     color: var(--tg-theme-hint-color);
-    margin-bottom: 25px;
+    font-weight: normal;
 }
 
+.header .icon-button {
+    background: none;
+    border: none;
+    color: var(--tg-theme-text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px; /* Скругление для области нажатия */
+    transition: background-color 0.2s ease;
+}
+
+.header .icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header .icon-button img {
+    width: 20px;
+    height: 20px;
+    /* filter: invert(var(--tg-theme-is-dark, 0)); */ /* Закомментируем, если Telegram не дает эту переменную */
+    filter: invert(1); /* Для темной темы (белые иконки на темном фоне) */
+    /* ! Если будет светлая тема, нужно будет добавить JS для смены цвета иконок */
+}
+
+.agency-branding {
+    color: var(--tg-theme-hint-color);
+    font-size: 0.8em;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: -5px; /* Поднимаем немного вверх, чтобы прилипло к шапке */
+    margin-bottom: 20px;
+}
+
+
+/* --- Stats Grid (Блоки статистики) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две колонки */
+    gap: 10px; /* Отступы между карточками */
+    padding: 0 15px 20px 15px; /* Горизонтальные отступы и снизу */
+}
+
+.stat-card {
+    background-color: var(--tg-theme-secondary-bg-color);
+    border: none; /* Убираем стандартную рамку кнопки */
+    border-radius: 10px; /* Скругление углов карточек */
+    padding: 15px;
+    text-align: left;
+    color: var(--tg-theme-text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box; /* Важно для padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100px; /* Фиксированная высота для единообразия */
+    position: relative; /* Для позиционирования описания */
+    overflow: hidden; /* Чтобы описание не вылезало за границы */
+}
+
+.stat-card:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Эффект наведения */
+}
+
+.stat-card .stat-title {
+    font-size: 0.9em;
+    color: var(--tg-theme-hint-color);
+    margin-bottom: 5px;
+}
+
+.stat-card .stat-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--tg-theme-text-color);
+}
+
+/* Описание метрики */
+.metric-description {
+    position: absolute; /* Позиционируем абсолютно */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--tg-theme-secondary-bg-color); /* Фон описания */
+    color: var(--tg-theme-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 0; /* Изначально скрыто */
+    visibility: hidden; /* Изначально скрыто */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-size: 0.85em;
+    text-align: center;
+}
+
+.metric-description.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Campaigns Section --- */
+h2 {
+    color: var(--tg-theme-text-color);
+    text-align: left;
+    padding: 0 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.campaigns-list {
+    padding: 0 15px 20px 15px;
+}
+
+.campaign-item {
+    background-color: var(--tg-theme-secondary-bg-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--tg-theme-text-color);
+}
+
+.campaign-info {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.campaign-name {
+    font-weight: 600;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.campaign-metrics span {
+    display: inline-block;
+    font-size: 0.85em;
+    color: var(--tg-theme-hint-color);
+    margin-right: 10px;
+}
+
+/* Toggle Switch (Переключатель) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Цвет выключенного переключателя */
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--tg-theme-button-color); /* Цвет включенного переключателя */
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 22px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* --- Форма ввода кампании (пока оставлена) --- */
+.container h2:last-of-type { /* Для заголовка формы */
+    margin-top: 30px;
+}
 label {
     display: block;
     text-align: left;
@@ -51,7 +303,7 @@ select {
     border-radius: 8px;
     box-sizing: border-box;
     font-size: 1em;
-    background-color: var(--tg-theme-section-bg-color);
+    background-color: var(--tg-theme-secondary-bg-color); /* Фон полей ввода */
     color: var(--tg-theme-text-color);
 }
 
@@ -62,7 +314,7 @@ textarea::placeholder {
 }
 
 select {
-    appearance: none; /* Убирает стандартные стили для select */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23888'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
@@ -70,8 +322,7 @@ select {
     background-position: right 10px center;
 }
 
-
-button {
+button#analyzeButton {
     background-color: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
     border: none;
@@ -81,8 +332,19 @@ button {
     cursor: pointer;
     transition: background-color 0.2s ease;
     width: 100%;
+    margin-top: 10px;
 }
 
-button:hover {
+button#analyzeButton:hover {
     opacity: 0.9;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr; /* На мобильных одна колонка */
+    }
+    .stat-card {
+        height: auto; /* Автоматическая высота на мобильных */
+    }
 }
