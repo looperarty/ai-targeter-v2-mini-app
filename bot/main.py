@@ -1,10 +1,10 @@
 import os
 import json
 from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F # <-- ИЗМЕНЕНИЕ 1: Добавили 'F' сюда
 from aiogram.filters import CommandStart
 from aiogram.enums import ContentType
-from aiogram.utils.web_app import WebAppInfo # Для WebAppInfo
+from aiogram.types import WebAppInfo
 
 # Импорт для работы с Google Gemini API
 import google.generativeai as genai
@@ -26,7 +26,6 @@ if not TOKEN or not YOUR_TELEGRAM_ID or not GOOGLE_GEMINI_API_KEY or not MINI_AP
 # Конфигурируем Google Gemini API
 genai.configure(api_key=GOOGLE_GEMINI_API_KEY)
 # Выбираем модель Gemini, которую будем использовать
-# 'gemini-pro' хорошо подходит для текстовых задач
 model = genai.GenerativeModel('gemini-pro')
 
 
@@ -44,13 +43,13 @@ async def cmd_start(message: types.Message):
 
 
 # Обработчик данных, приходящих из Mini App
-@dp.message(content_type=ContentType.WEB_APP_DATA)
+@dp.message(F.web_app_data) # <-- ИЗМЕНЕНИЕ 2: Используем F.web_app_data для фильтрации
 async def web_app_data_handler(message: types.Message):
     try:
         data = json.loads(message.web_app_data.data)
 
         # Извлекаем данные из Mini App
-        request_type = data.get('type', 'campaign_analysis') # У нас пока только один тип, но для расширения
+        request_type = data.get('type', 'campaign_analysis')
         product_name = data.get('product_name', 'не указан')
         campaign_goal = data.get('campaign_goal', 'не указана')
         target_audience_description = data.get('target_audience_description', 'не указано')
@@ -86,7 +85,6 @@ async def web_app_data_handler(message: types.Message):
             f"Описание ЦА: {target_audience_description}\nБюджет: {budget} USD"
         )
 
-        # Отправляем тебе результат
         await bot.send_message(chat_id=YOUR_TELEGRAM_ID, text=final_message, parse_mode='Markdown')
         print(f"Получены и обработаны данные из Mini App, отправлены рекомендации: {data}")
 
