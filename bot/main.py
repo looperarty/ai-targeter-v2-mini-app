@@ -12,12 +12,11 @@ load_dotenv()
 # Получаем данные из переменных окружения
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 YOUR_TELEGRAM_ID = int(os.getenv('YOUR_TELEGRAM_ID')) # Преобразуем в int
-CHANNEL_ID = os.getenv('CHANNEL_ID') # Строка для сравнения
 MINI_APP_URL = os.getenv('MINI_APP_URL')
 
 # Проверяем наличие всех необходимых переменных
-if not TOKEN or not YOUR_TELEGRAM_ID or not CHANNEL_ID or not MINI_APP_URL:
-    print("Ошибка: Убедитесь, что все переменные (TELEGRAM_BOT_TOKEN, YOUR_TELEGRAM_ID, CHANNEL_ID, MINI_APP_URL) заданы в файле .env")
+if not TOKEN or not YOUR_TELEGRAM_ID or not MINI_APP_URL:
+    print("Ошибка: Убедитесь, что все переменные (TELEGRAM_BOT_TOKEN, YOUR_TELEGRAM_ID, MINI_APP_URL) заданы в файле .env")
     exit()
 
 # Инициализируем бота и диспетчера
@@ -32,31 +31,6 @@ async def cmd_start(message: types.Message):
         [types.InlineKeyboardButton(text="Запустить ИИ-Таргетолога", web_app=WebAppInfo(url=MINI_APP_URL))]
     ])
     await message.answer("Привет! Я твой ИИ-таргетолог для Meta Ads. Нажми кнопку, чтобы начать настройку кампании:", reply_markup=keyboard)
-
-# Обработчик для события добавления новых участников в канал
-# Этот код остается для автоматических уведомлений, если ты хочешь его использовать
-@dp.message(content_type=ContentType.NEW_CHAT_MEMBERS)
-async def new_member_handler(message: types.Message):
-    # Проверяем, что событие произошло именно в нашем канале
-    if str(message.chat.id) == CHANNEL_ID:
-        for user in message.new_chat_members:
-            if not user.is_bot: # Игнорируем самого бота
-                first_name = user.first_name if user.first_name else "Неизвестный"
-                last_name = user.last_name if user.last_name else ""
-                username = f"@{user.username}" if user.username else "нет юзернейма"
-
-                notification_message = (
-                    f"🎉 Новый подписчик в канале!\n"
-                    f"Имя: {first_name} {last_name}\n"
-                    f"Username: {username}\n"
-                    f"ID пользователя: {user.id}"
-                )
-
-                try:
-                    await bot.send_message(chat_id=YOUR_TELEGRAM_ID, text=notification_message)
-                    print(f"Отправлено уведомление о новом подписчике: {first_name} {last_name}")
-                except Exception as e:
-                    print(f"Ошибка при отправке уведомления: {e}")
 
 # Обработчик данных, приходящих из Mini App
 @dp.message(content_type=ContentType.WEB_APP_DATA)
