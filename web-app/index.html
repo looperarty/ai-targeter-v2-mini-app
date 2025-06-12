@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИИ-Таргетолог Meta Ads</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>ИИ-Таргетолог Meta Ads</h1>
+        <p>Введите информацию для создания/анализа рекламной кампании:</p>
+
+        <label for="productName">Что продаем/рекламируем?</label>
+        <input type="text" id="productName" placeholder="Название продукта/услуги" required>
+
+        <label for="campaignGoal">Цель кампании?</label>
+        <select id="campaignGoal">
+            <option value="">Выберите цель</option>
+            <option value="traffic">Трафик на сайт/профиль</option>
+            <option value="leads">Сбор лидов (заявки)</option>
+            <option value="sales">Продажи/Конверсии</option>
+            <option value="reach">Охват/Узнаваемость</option>
+        </select>
+
+        <label for="targetAudienceDesc">Опишите целевую аудиторию (опционально):</label>
+        <textarea id="targetAudienceDesc" placeholder="Например: женщины 25-45 лет, интересующиеся модой и путешествиями" rows="3"></textarea>
+
+        <label for="budget">Предполагаемый бюджет (в USD):</label>
+        <input type="number" id="budget" placeholder="Например: 1000" min="10" step="1">
+
+        <button id="analyzeButton">Получить рекомендации ИИ</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
