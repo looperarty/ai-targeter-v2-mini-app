@@ -9,7 +9,56 @@
 </head>
 <body>
     <div class="container">
-        <h1>ИИ-Таргетолог Meta Ads</h1>
+        <div class="header">
+            <button class="icon-button" id="dateSelectButton"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik02IDJ2MmgyVjJoOFYydjJoMlYyYTIgMiAwIDAgMCAyIDJ2MTZhMiAyIDAgMCAxLTIgMnYtMmgtdjJoLTIyLS4xLTJWNDYuMTRhMiAyIDAgMCAwLTIgMi41IDIgMiAwIDAgMCAyLjQ1LTIuNDV6TTE1IDhoMi41di00SDE1djR6TTE3IDYuNUwxMiA3LjVsNSAwLjVWMThoMi41VjcuNWwxLS41VjZIMTd6Ii8+PC9zdmc+" alt="Date"></button>
+            <h1>ai target <small>мини-приложение</small></h1>
+            <button class="icon-button" id="refreshButton"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik0xMiAzYzMtLjY2NiA2LjQ0NC45MTkgOS4xMiAxLjkzNmw2LjA4LTkuMTQ2bC05LjUyIDEuNjM1TDI0LjI3IDE2Ljg1bC0yLjY3LTQuMDQ1Yy0zLjQ3OCA0LjYxLTcuMDcgNy42OTYtMTIuMjkgNy4wOTVMOCA2bDEgLjk2IDIgMS4wNHMtNi4yIDMtNi4yIDNjLTEuNzU1LS45MTctMS4zNDYtMS42NDktMi4xNTMtMi43NzUtMS4wNTgtMS40OTgtMS4yMjMtMy4xNi0uNTk1LTQuNzIzQzcuMDggNy4xNjggOC41IDEuMzMgOC41IDEuMzMgNSAxLjMzIDUgMS4zMyAzIDEuMzMgM3oiLz48L3N2Zz4=" alt="Refresh"></button>
+            <button class="icon-button" id="themeToggleButton"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9TTEyIDMuNzU3Yy01LjYyNSAwLTEwLjE5IDEuNzE3LTEwLjE5IDMuODEgMC0yLjA5MyA0LjU2NS0zLjgxIDEwLjE5LTMuODEgNS42MjUgMCAxMC4xOSA0LjU2NCAxMC4xOSA0LjgxIDAgMi4xMTItNC41NjUgMy44MTItMTAuMTkgMy44MTJzLTEwLjE5LTQuNTY1LTEwLjE5LTQuODEgMTAuMTktNC44MnpNNS4xNzQgMjAuMzk1bC0xLjY3NiAxLjczNmExLjE1MSAxLjE1MSAwIDAgMS0xLjU1Mi0xLjcwN2wxLjY4LTIuMiAxLjU1MiAxLjcwN3oiLz48L3N2Zz4=" alt="Theme"></button>
+        </div>
+        <p class="agency-branding">by Performante AI Agency</p>
+
+        <div class="stats-grid">
+            <button class="stat-card" data-metric="total_spent">
+                <span class="stat-title">Общий расход</span>
+                <span class="stat-value">$0.00</span>
+                <p class="metric-description">Все деньги, потраченные на рекламу за выбранный период.</p>
+            </button>
+            <button class="stat-card" data-metric="total_conversations">
+                <span class="stat-title">Всего переписок</span>
+                <span class="stat-value">0</span>
+                <p class="metric-description">Количество уникальных диалогов или обращений, вызванных рекламой.</p>
+            </button>
+            <button class="stat-card" data-metric="avg_cpl">
+                <span class="stat-title">Средний CPL</span>
+                <span class="stat-value">$0.00</span>
+                <p class="metric-description">Средняя стоимость одной переписки (лида). CPL = Общий расход / Всего переписок.</p>
+            </button>
+            <button class="stat-card" data-metric="total_impressions">
+                <span class="stat-title">Всего показов</span>
+                <span class="stat-value">0</span>
+                <p class="metric-description">Общее количество показов вашей рекламы пользователям.</p>
+            </button>
+        </div>
+
+        <h2>Кампании</h2>
+        <div class="campaigns-list">
+            <div class="campaign-item">
+                <div class="campaign-info">
+                    <span class="campaign-name">11.04 | AI-таргетолог Рилсы | Вов...</span>
+                    <div class="campaign-metrics">
+                        <span>Расход: $0.00</span>
+                        <span>Лиды/чаты: 0</span>
+                        <span>Стоимость лида: $0.00</span>
+                    </div>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            </div>
+
+        <h2>Добавить новую кампанию (Временно)</h2>
         <p>Введите информацию для создания/анализа рекламной кампании:</p>
 
         <label for="productName">Что продаем/рекламируем?</label>
