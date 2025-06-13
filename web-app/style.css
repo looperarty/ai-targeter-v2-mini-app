@@ -93,12 +93,10 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.header .icon-button img {
+.header .icon-button svg { /* <-- ИЗМЕНЕНИЕ: Стиль для SVG-иконок */
     width: 20px;
     height: 20px;
-    /* filter: invert(var(--tg-theme-is-dark, 0)); */ /* Закомментируем, если Telegram не дает эту переменную */
-    filter: invert(1); /* Для темной темы (белые иконки на темном фоне) */
-    /* ! Если будет светлая тема, нужно будет добавить JS для смены цвета иконок */
+    fill: currentColor; /* Используем текущий цвет текста для SVG */
 }
 
 .agency-branding {

@@ -9,7 +9,7 @@ document.getElementById('backButton').addEventListener('click', () => {
     telegramWebApp.close(); // Закрываем Mini App
 });
 
-document.getElementById('dateSelectButton').addEventListener('click', () => {
+document.getElementById('calendarButton').addEventListener('click', () => {
     // В будущем здесь будет логика для выпадающего календаря
     telegramWebApp.showAlert(`Кнопка "Выбор даты" нажата. Сегодня: ${new Date().toLocaleDateString()}`);
 });
@@ -28,9 +28,9 @@ document.getElementById('themeToggleButton').addEventListener('click', () => {
     const newTheme = isDark ? 'светлая' : 'темная';
     telegramWebApp.showAlert(`Тема будет переключена на ${newTheme}. (Функционал в разработке. Сейчас тема определяется настройками Telegram.)`);
 
-    // Для демонстрации, можно переключать класс на body, если нет прямого контроля над темами Telegram
-    // document.body.classList.toggle('light-theme', isDark); 
-    // document.body.classList.toggle('dark-theme', !isDark);
+    // Более продвинутый способ: отправить запрос Telegram на изменение темы
+    // telegramWebApp.sendData(JSON.stringify({ type: 'toggle_theme' }));
+    // Или просто переключать класс на body для кастомных стилей
 });
 
 
