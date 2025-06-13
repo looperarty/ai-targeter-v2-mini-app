@@ -3,94 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИИ-Таргетолог Meta Ads</title>
+    <title>AI Targeter Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-    <button class="icon-button" id="backButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-    </button>
-    <h1>AI Targeter V3 <small>тестовый запуск</small></h1> <button class="icon-button" id="calendarButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
-    </button>
-    <button class="icon-button" id="themeToggleButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 17c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
-    </button>
-</div>
-            <button class="icon-button" id="dateSelectButton"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik02IDJ2MmgyVjJoOFYydjJoMlYyYTIgMiAwIDAgMCAyIDJ2MTZhMiAyIDAgMCAxLTIgMnYtMmgtdjJoLTIyLS4xLTJWNDYuMTRhMiAyIDAgMCAwLTIgMi41IDIgMiAwIDAgMCAyLjQ1LTIuNDV6TTE1IDhoMi41di00SDE1djR6TTE3IDYuNUwxMiA3LjVsNSAwLjVWMThoMi41VjcuNWwxLS41VjZIMTd6Ii8+PC9zdmc+" alt="Date"></button>
-            <h1>AI Targeter V3 <small>тестовый запуск</small></h1>
-            <button class="icon-button" id="refreshButton"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik0xMiAzYzMtLjY2NiA2LjQ0NC45MTkgOS4xMiAxLjkzNmw2LjA4LTkuMTQ2bC05LjUyIDEuNjM1TDI0LjI3IDE2Ljg1bC0yLjY3LTQuMDQ1Yy0zLjQ3OCA0LjYxLTcuMDcgNy42OTYtMTIuMjkgNy4wOTVMOCA2bDEgLjk2IDIgMS4wNHMtNi4yIDMtNi4yIDNjLTEuNzU1LS45MTctMS4zNDYtMS42NDktMi4xNTMtMi43NzUtMS4wNTgtMS40OTgtMS4yMjMtMy4xNi0uNTk1LTQuNzIzQzcuMDggNy4xNjggOC41IDEuMzMgOC41IDEuMzMgNSAxLjMzIDUgMS4zMyAzIDEuMzMgM3oiLz48L3N2Zz4=" alt="Refresh"></button>
-            <button class="icon-button" id="themeToggleButton"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9TTEyIDMuNzU3Yy01LjYyNSAwLTEwLjE5IDEuNzE3LTEwLjE5IDMuODEgMC0yLjA5MyA0LjU2NS0zLjgxIDEwLjE5LTMuODEgNS42MjUgMCAxMC4xOSA0LjU2NCAxMC4xOSA0LjgxIDAgMi4xMTItNC41NjUgMy44MTItMTAuMTkgMy44MTJzLTEwLjE5LTQuNTY1LTEwLjE5LTQuODEgMTAuMTktNC44MnpNNS4xNzQgMjAuMzk1bC0xLjY3NiAxLjczNmExLjE1MSAxLjE1MSAwIDAgMS0xLjU1Mi0xLjcwN2wxLjY4LTIuMiAxLjU1MiAxLjcwN3oiLz48L3N2Zz4=" alt="Theme"></button>
-        </div>
-        <p class="agency-branding">by Performante AI Agency</p>
-
-        <div class="stats-grid">
-            <button class="stat-card" data-metric="total_spent">
-                <span class="stat-title">Общий расход</span>
-                <span class="stat-value">$0.00</span>
-                <p class="metric-description">Все деньги, потраченные на рекламу за выбранный период.</p>
-            </button>
-            <button class="stat-card" data-metric="total_conversations">
-                <span class="stat-title">Всего переписок</span>
-                <span class="stat-value">0</span>
-                <p class="metric-description">Количество уникальных диалогов или обращений, вызванных рекламой.</p>
-            </button>
-            <button class="stat-card" data-metric="avg_cpl">
-                <span class="stat-title">Средний CPL</span>
-                <span class="stat-value">$0.00</span>
-                <p class="metric-description">Средняя стоимость одной переписки (лида). CPL = Общий расход / Всего переписок.</p>
-            </button>
-            <button class="stat-card" data-metric="total_impressions">
-                <span class="stat-title">Всего показов</span>
-                <span class="stat-value">0</span>
-                <p class="metric-description">Общее количество показов вашей рекламы пользователям.</p>
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <button class="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
         </div>
 
-        <h2>Кампании</h2>
-        <div class="campaigns-list">
-            <div class="campaign-item">
-                <div class="campaign-info">
-                    <span class="campaign-name">11.04 | AI-таргетолог Рилсы | Вов...</span>
-                    <div class="campaign-metrics">
-                        <span>Расход: $0.00</span>
-                        <span>Лиды/чаты: 0</span>
-                        <span>Стоимость лида: $0.00</span>
-                    </div>
+        <div class="stats-grid top-stats">
+            <div class="stat-card">
+                <div class="stat-label">Total Spend</div>
+                <div class="stat-value">33232</div>
+                <div class="stat-insights">Total Insights</div>
+                <button class="view-details-button green">Total Impressions</button>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Conversations</div>
+                <div class="stat-value">62240</div>
+                <div class="stat-insights">Total Insights</div>
+                <button class="view-details-button green">Total Impressions</button>
+            </div>
+        </div>
+
+        <div class="statistics-section">
+            <h2>Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Average CPL</div>
+                    <div class="stat-value">10034</div>
+                    <div class="stat-insights">Total Insights</div>
                 </div>
-                <label class="toggle-switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
+                <div class="stat-card">
+                    <div class="stat-label">Total Impressions</div>
+                    <div class="stat-value">8030</div>
+                    <div class="stat-insights">Total Insights</div>
+                </div>
             </div>
+        </div>
+
+        <div class="campaigns-section">
+            <h2>Campaigns</h2>
+            <div class="campaigns-navigation">
+                <button class="nav-button active">Active</button>
+                <button class="nav-button inactive">Inactive</button>
+                <button class="nav-button inactive">Inactive</button>
             </div>
-
-        <h2>Добавить новую кампанию (Временно)</h2>
-        <p>Введите информацию для создания/анализа рекламной кампании:</p>
-
-        <label for="productName">Что продаем/рекламируем?</label>
-        <input type="text" id="productName" placeholder="Название продукта/услуги" required>
-
-        <label for="campaignGoal">Цель кампании?</label>
-        <select id="campaignGoal">
-            <option value="">Выберите цель</option>
-            <option value="traffic">Трафик на сайт/профиль</option>
-            <option value="leads">Сбор лидов (заявки)</option>
-            <option value="sales">Продажи/Конверсии</option>
-            <option value="reach">Охват/Узнаваемость</option>
-        </select>
-
-        <label for="targetAudienceDesc">Опишите целевую аудиторию (опционально):</label>
-        <textarea id="targetAudienceDesc" placeholder="Например: женщины 25-45 лет, интересующиеся модой и путешествиями" rows="3"></textarea>
-
-        <label for="budget">Предполагаемый бюджет (в USD):</label>
-        <input type="number" id="budget" placeholder="Например: 1000" min="10" step="1">
-
-        <button id="analyzeButton">Получить рекомендации ИИ</button>
+            <ul class="campaigns-list">
+                <li class="campaign-item">
+                    <div class="campaign-info">
+                        <div class="campaign-icon">👤</div>
+                        <div class="campaign-details">
+                            <div class="campaign-name">Campaigns</div>
+                            <div class="campaign-status">Anative</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li class="campaign-item">
+                    <div class="campaign-info">
+                        <div class="campaign-icon">👩‍💼</div>
+                        <div class="campaign-details">
+                            <div class="campaign-name">Camparts</div>
+                            <div class="campaign-status">Anative</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li class="campaign-item">
+                    <div class="campaign-info">
+                        <div class="campaign-icon">👥</div>
+                        <div class="campaign-details">
+                            <div class="campaign-name">Campaigns</div>
+                            <div class="campaign-status">Anative</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li class="campaign-item">
+                    <div class="campaign-info">
+                        <div class="campaign-icon">👨‍💻</div>
+                        <div class="campaign-details">
+                            <div class="campaign-name">Campaigns</div>
+                            <div class="campaign-status">Jnative</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
+</html>
